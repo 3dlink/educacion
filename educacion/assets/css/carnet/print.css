@@ -1,0 +1,175 @@
+.oculto{
+	display: none;
+}
+.successInput{
+	border: solid 1.2px green;
+}
+.headerFound{
+	color:#006933;
+	font-size: 18px;
+	margin: 1px 0 4px;
+	padding: 0;
+}
+.noFound{
+	font-size: 15px;
+}
+.foundStudent{
+	text-indent: 15px;
+	margin: 2px 0 5px;
+	padding: .5px;
+	font-size: 13px;
+}
+.carnetFormat{
+	text-align: center;
+	font-weight: bold;
+	color: #000;
+	border: 1px solid #31708f;
+	border-radius: 5px;
+	padding: 14px .5px 5px;
+	display: inline-block;
+	vertical-align: top;
+	max-width: 100%;
+	width: 45%;
+	height: 420px;
+}
+.headerCarnet{
+	line-height:.8;
+}
+.inlineScude, .inlinePhoto{
+	display: inline-block;
+	vertical-align: top;
+	max-width: 100%;
+	width: 45%;
+	font-size: 11px;
+	height: auto;
+	padding: 0;
+	margin: 0; 
+}
+.inlinePhoto{
+	width: 40%;
+	margin-left:8px;
+}
+.centerRow{
+	margin: 5px auto;
+}
+.logoChacao {
+	height: 100px;
+}
+.contactoCarnet{
+	margin: 7px;
+}
+.scude, .photo{
+	height: 100px;
+}
+.scude{
+	height: 120px;
+}
+.scudeChacao, .photoStudent{
+	margin: 0;
+	padding: 0;
+	border: 0;
+	width: 100%;
+	height: 115px;
+}
+.photoStudent{
+	display: none;
+}
+.infoCampo, .infoCampo2{
+	width: 86%;
+	text-align: center;
+	height: auto;
+	margin: 0 auto;
+}
+.infoCampo2{
+	margin-top: 2px;
+}
+.valueCampo{
+	width: 80%;
+	height: auto;
+	background: #fff;
+	border-radius: 5px;
+	margin:0 auto;
+	padding: 0;
+	text-align: center;
+	color: #777;
+}
+.reverseCarnet, .infoDirector{
+	margin: 18px auto;
+	padding: 0 .5em;
+	width: 90%;
+	height: auto;
+	display: block;
+}
+.codigoBarra{
+	width: 100%;
+	display: block;
+	height: 35px;
+	margin: 1px auto;
+	padding:0;
+}
+.code{
+	height: 30px;
+	width: 70%;
+	margin: 0;
+	padding: 0;
+}
+.expireCarnet{
+	width: 100%;
+	height: auto;
+	margin:3px 0 0;
+	padding: 0;
+	text-align: center;
+}
+.infoDirector{
+	width: 100%;
+	height: auto;
+	margin: 0;
+	padding: 0;
+}
+.footerCarnet{
+	width: 100%;
+	height: auto;
+	margin: 35px auto;
+	padding: 10px .5px;
+	text-align: center;
+}
+#infoStudent{
+	color: #31708f;
+	font-size: 15px;
+}
+#txtIdentification{
+	margin: 0 0 8px;
+
+}
+#msjError{
+	background: rgba(215, 40, 40, 0.9);
+	color: #fff;
+	font-weight: bold;
+	font-size: 12px;
+	width: 100%;
+	height: auto;
+	padding: .4px 1px 0;
+	margin: 5px  auto 0;
+	border-radius: 8px;
+	text-align: center;
+    border:solid .5px #000000;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright:5px;
+    -moz-border-radius-bottomleft:5px;
+    -moz-border-radius-bottomright:5px;
+    -webkit-border-top-left-radius:5px;
+    -webkit-border-top-right-radius:5px;
+    -webkit-border-bottom-left-radius:5px;
+    -webkit-border-bottom-right-radius:5px;
+    border-top-left-radius:5px;
+    border-top-right-radius:5px;
+    border-bottom-left-radius:5px;
+    border-bottom-right-radius:5px;
+    vertical-align: top;
+	border: solid 1px #000;
+}
+#Found{
+	color: #2C7EA1;
+}
+
+

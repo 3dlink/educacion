@@ -1,0 +1,14 @@
+.logo{
+	max-width: 35px;
+}
+.inline1, .inline2, .inline3{
+	max-width: 100%;
+	width: 25%;
+	display: inline-block;
+	vertical-align: top;
+	height: auto;
+}
+.inline2{
+	width: 43%;
+}
+

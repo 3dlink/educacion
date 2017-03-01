@@ -1,0 +1,3 @@
+tmp_dir/*
+application/logs/*
+application/config/*

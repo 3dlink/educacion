@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="resumen_censo" language="groovy" pageWidth="792" pageHeight="612" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="29bfe9fb-5b4a-4c33-bb6c-e9ba05f72a2f">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="ireport.jasperserver.reportUnit" value="/reports/educacion/resumen_censo"/>
+	<property name="ireport.jasperserver.url" value="http://educacion.chacao.gob.ve:8080/jasperserver/services/repository"/>
+	<parameter name="fecha_desde" class="java.util.Date">
+		<parameterDescription><![CDATA[Fecha solicitud desde]]></parameterDescription>
+		<defaultValueExpression><![CDATA[2016/03/01]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fecha_hasta" class="java.util.Date">
+		<parameterDescription><![CDATA[Fecha de solicitud hasta]]></parameterDescription>
+		<defaultValueExpression><![CDATA[2016/03/30]]></defaultValueExpression>
+	</parameter>
+	<parameter name="escuela" class="java.util.Collection"/>
+	<parameter name="grado" class="java.util.Collection"/>
+	<parameter name="sexo" class="java.util.List" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="residente" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ponderacion" class="java.lang.Integer"/>
+	<parameter name="status" class="java.util.Collection">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="escuela_procedencia" class="java.util.Collection"/>
+	<queryString>
+		<![CDATA[SELECT
+     vrpresumencenso.`vpuntajecenso_id_censo` AS vrpresumencenso_vpuntajecenso_id_censo,
+     vrpresumencenso.`fecha_solicitud` AS vrpresumencenso_fecha_solicitud,
+     vrpresumencenso.`nombre_representante` AS vrpresumencenso_nombre_representante,
+     vrpresumencenso.`identificacion_representante` AS vrpresumencenso_identificacion_representante,
+     vrpresumencenso.`parentesco` AS vrpresumencenso_parentesco,
+     vrpresumencenso.`otro_parentesco` AS vrpresumencenso_otro_parentesco,
+     vrpresumencenso.`nombre_alumno` AS vrpresumencenso_nombre_alumno,
+     vrpresumencenso.`edad` AS vrpresumencenso_edad,
+     vrpresumencenso.`sexo` AS vrpresumencenso_sexo,
+     vrpresumencenso.`id_grado` AS vrpresumencenso_id_grado,
+     vrpresumencenso.`grado` AS vrpresumencenso_grado,
+     vrpresumencenso.`escuela_procedencia` AS vrpresumencenso_escuela_procedencia,
+     vrpresumencenso.`nombre_escuela` AS vrpresumencenso_nombre_escuela,
+     vrpresumencenso.`estado_escuela` AS vrpresumencenso_estado_escuela,
+     vrpresumencenso.`municipio_escuela` AS vrpresumencenso_municipio_escuela,
+     vrpresumencenso.`ponderacion` AS vrpresumencenso_ponderacion,
+     vrpresumencenso.`id_escuela` AS vrpresumencenso_id_escuela,
+     vrpresumencenso.`Residente` AS vrpresumencenso_Residente,
+     vrpresumencenso.`trabaja_mun_alcaldia` AS vrpresumencenso_trabaja_mun_alcaldia,
+     vrpresumencenso.`id_especialista` AS vrpresumencenso_id_especialista,
+     vrpresumencenso.`EstadoDondeResideElAlumno` AS vrpresumencenso_EstadoDondeResideElAlumno,
+     vrpresumencenso.`MunicipioDondeResideElAlumno` AS vrpresumencenso_MunicipioDondeResideElAlumno,
+     vrpresumencenso.`UrbanizacionOSectorDondeResideElAlumno` AS vrpresumencenso_UrbanizacionOSectorDondeResideElAlumno,
+     vrpresumencenso.`CalleOAvenidaDondeResideElAlumno` AS vrpresumencenso_CalleOAvenidaDondeResideElAlumno,
+     vrpresumencenso.`CasaOEdificioDondeResideElAlumno` AS vrpresumencenso_CasaOEdificioDondeResideElAlumno,
+     vrpresumencenso.`PisoOPlantaDondeResideElAlumno` AS vrpresumencenso_PisoOPlantaDondeResideElAlumno,
+     vrpresumencenso.`NumeroDeCasaOApartamentoDondeResideElAlumno` AS vrpresumencenso_NumeroDeCasaOApartamentoDondeResideElAlumno,
+     vrpresumencenso.`TelefonoDeHabitacionDelRepresentante` AS vrpresumencenso_TelefonoDeHabitacionDelRepresentante,
+     vrpresumencenso.`TelefonoCelularDelRepresentante` AS vrpresumencenso_TelefonoCelularDelRepresentante,
+     vrpresumencenso.`StatusCenso` AS vrpresumencenso_StatusCenso
+FROM
+     `vrpresumencenso` vrpresumencenso
+WHERE
+     (vrpresumencenso.`fecha_solicitud` between $P{fecha_desde} AND $P{fecha_hasta}) AND
+     $X{EQUAL, vrpresumencenso.`StatusCenso`, status} AND
+     $X{EQUAL, vrpresumencenso.`Residente`, residente} AND
+     $X{EQUAL, vrpresumencenso.`id_grado`, grado} AND
+     $X{EQUAL, vrpresumencenso.`id_escuela`, escuela} AND
+     $X{EQUAL, vrpresumencenso.`escuela_procedencia`, escuela_procedencia} AND
+     $X{EQUAL, vrpresumencenso.`ponderacion`, ponderacion} AND
+     $X{EQUAL, vrpresumencenso.`sexo`, sexo} ]]>
+	</queryString>
+	<field name="vrpresumencenso_vpuntajecenso_id_censo" class="java.lang.Integer"/>
+	<field name="vrpresumencenso_fecha_solicitud" class="java.sql.Timestamp"/>
+	<field name="vrpresumencenso_nombre_representante" class="java.lang.String"/>
+	<field name="vrpresumencenso_identificacion_representante" class="java.lang.Integer"/>
+	<field name="vrpresumencenso_parentesco" class="java.lang.String"/>
+	<field name="vrpresumencenso_otro_parentesco" class="java.lang.String"/>
+	<field name="vrpresumencenso_nombre_alumno" class="java.lang.String"/>
+	<field name="vrpresumencenso_edad" class="java.lang.Long"/>
+	<field name="vrpresumencenso_sexo" class="java.lang.String"/>
+	<field name="vrpresumencenso_id_grado" class="java.lang.String"/>
+	<field name="vrpresumencenso_grado" class="java.lang.String"/>
+	<field name="vrpresumencenso_escuela_procedencia" class="java.lang.String"/>
+	<field name="vrpresumencenso_nombre_escuela" class="java.lang.String"/>
+	<field name="vrpresumencenso_estado_escuela" class="java.lang.Integer"/>
+	<field name="vrpresumencenso_municipio_escuela" class="java.lang.Integer"/>
+	<field name="vrpresumencenso_ponderacion" class="java.lang.Long"/>
+	<field name="vrpresumencenso_id_escuela" class="java.lang.String"/>
+	<field name="vrpresumencenso_Residente" class="java.lang.Boolean"/>
+	<field name="vrpresumencenso_trabaja_mun_alcaldia" class="java.lang.Integer"/>
+	<field name="vrpresumencenso_id_especialista" class="java.lang.Integer"/>
+	<field name="vrpresumencenso_EstadoDondeResideElAlumno" class="java.lang.Integer"/>
+	<field name="vrpresumencenso_MunicipioDondeResideElAlumno" class="java.lang.Integer"/>
+	<field name="vrpresumencenso_UrbanizacionOSectorDondeResideElAlumno" class="java.lang.String"/>
+	<field name="vrpresumencenso_CalleOAvenidaDondeResideElAlumno" class="java.lang.String"/>
+	<field name="vrpresumencenso_CasaOEdificioDondeResideElAlumno" class="java.lang.String"/>
+	<field name="vrpresumencenso_PisoOPlantaDondeResideElAlumno" class="java.lang.String"/>
+	<field name="vrpresumencenso_NumeroDeCasaOApartamentoDondeResideElAlumno" class="java.lang.String"/>
+	<field name="vrpresumencenso_TelefonoDeHabitacionDelRepresentante" class="java.lang.String"/>
+	<field name="vrpresumencenso_TelefonoCelularDelRepresentante" class="java.lang.String"/>
+	<field name="vrpresumencenso_StatusCenso" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<elementGroup>
+				<elementGroup>
+					<textField pattern="dd/MM/yyyy">
+						<reportElement x="652" y="35" width="100" height="20" uuid="eaaf3e72-faeb-4f6d-99ce-64dcab6b78e9"/>
+						<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+					</textField>
+				</elementGroup>
+			</elementGroup>
+			<textField pattern="h.mm a">
+				<reportElement x="652" y="54" width="100" height="20" uuid="594b3ff1-01cb-44c2-8a19-ea0d7d1a6550"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="615" y="35" width="37" height="20" uuid="7b831be1-42e9-40e9-9893-500b4f0da078"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Fecha: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="615" y="54" width="37" height="20" uuid="50b3d810-7e73-4135-8a91-0da1feea550f"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Hora: ]]></text>
+			</staticText>
+			<image>
+				<reportElement x="10" y="5" width="123" height="69" uuid="4216b19e-7646-48eb-8aea-67135a2ac5c8"/>
+				<imageExpression><![CDATA["repo:logo_educacion_chacao.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="23" splitType="Stretch">
+			<staticText>
+				<reportElement x="151" y="2" width="428" height="20" uuid="10440191-a1be-4217-86d6-e22894e5c360"/>
+				<textElement textAlignment="Center">
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[Listado de Citas/horas por representantes y alumnos]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="34" splitType="Stretch">
+			<staticText>
+				<reportElement x="110" y="0" width="89" height="31" uuid="41bcc5c1-d109-4a84-b05d-55f72916946b"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre, Apellido Representante]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="0" width="62" height="31" uuid="0ad30abc-6f54-4d56-887b-a630484d1f9c"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha/hora solicitud]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="222" y="11" width="65" height="20" uuid="88a3a341-cac3-4249-8c73-677430ecd143"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[C.I Rep]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="296" y="11" width="59" height="20" uuid="e6e5801f-40fd-4c88-85ba-48fef475546f"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Parentesco]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="378" y="1" width="89" height="30" uuid="fd342548-30ba-4b9b-9e7b-7f9bb434c883"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre, Apellido Alumno]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="492" y="11" width="33" height="20" uuid="84116b40-a5d4-472b-bbcf-c898dc0d5dbd"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Edad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="525" y="11" width="54" height="20" uuid="b245daad-d6bc-4189-a852-87274a7e4572"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sexo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="580" y="11" width="72" height="20" uuid="478e435a-7b33-46cb-9426-adcd4f7f7d19"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Grado a cursar]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="656" y="1" width="90" height="30" uuid="8bc07547-b8bc-4b62-b0ca-c5793be11128"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Escuela de Procedencia]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="82" height="16" uuid="a8419a0d-2b4c-4263-9931-99af06cd6e4e"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{vrpresumencenso_fecha_solicitud}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="87" y="0" width="127" height="16" uuid="fa16b87b-6d01-4300-b6db-fc96cc778e31"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{vrpresumencenso_nombre_representante}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="218" y="0" width="74" height="16" uuid="58d5cf86-c63c-4f62-a25d-27393f2ebbfd"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{vrpresumencenso_identificacion_representante}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="296" y="0" width="59" height="16" uuid="66c25d6d-e904-412b-b587-8eb41a4ba2bc"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{vrpresumencenso_parentesco}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="359" y="0" width="133" height="16" uuid="c5a2d413-3ec1-41f2-a913-2f3a17db8192"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{vrpresumencenso_nombre_alumno}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="497" y="0" width="23" height="16" uuid="35b46b9d-9ec2-45e7-b475-ed71783e9e56"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{vrpresumencenso_edad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="525" y="0" width="54" height="16" uuid="44f6991f-447d-4e5f-bf45-39e3a70251c1"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{vrpresumencenso_sexo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="580" y="0" width="72" height="16" uuid="1da2db78-8fc5-4313-b457-9356da8e03b6"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{vrpresumencenso_grado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="656" y="0" width="90" height="16" uuid="b60386dc-891f-475d-a4f6-738cd459f730"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{vrpresumencenso_escuela_procedencia}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="16" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="647" y="0" width="67" height="20" uuid="bbddc455-c2ed-48b1-bc60-84ec43272127"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="714" y="0" width="38" height="20" uuid="54f6c7e3-60e8-4008-a96b-b610652a3dfa"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
